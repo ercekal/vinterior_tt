@@ -8,12 +8,10 @@ attr_reader :total_price, :basket
     @promotional_rules = promotional_rules
     @basket = []
     @total_price = 0
-    @chair_count = 0
   end
 
   def scan(item)
     @basket << item
-    count_chairs(item)
     @total_price += item.price
   end
 
@@ -23,12 +21,12 @@ attr_reader :total_price, :basket
         @total_price = @total_price * 0.9
       end
     elsif @promotional_rules == 2
-      if @chair_count >= 2
-        @total_price = @total_price - ((9.25 - 8.50) * @chair_count)
+      if count_chairs >= 2
+        @total_price = @total_price - ((9.25 - 8.50) * count_chairs)
       end
     elsif @promotional_rules == 3
-      if @chair_count >= 2
-        @total_price = @total_price - ((9.25 - 8.50) * @chair_count)
+      if count_chairs >= 2
+        @total_price = @total_price - ((9.25 - 8.50) * count_chairs)
       end
       if @total_price > 60
         @total_price = @total_price * 0.9
@@ -39,10 +37,8 @@ attr_reader :total_price, :basket
 
   private
 
-  def count_chairs(item)
-    if item.code == 001
-      @chair_count += 1
-    end
+  def count_chairs
+    result = @basket.count { |element| element.name.match(/(chair)s?\Z/i) }
   end
 
 end
