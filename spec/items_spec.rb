@@ -1,4 +1,4 @@
-require 'checkout'
+require 'items'
 
 describe Items do
 
