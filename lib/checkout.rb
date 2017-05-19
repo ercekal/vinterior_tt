@@ -2,7 +2,7 @@ require_relative 'item'
 
 class Checkout
 
-attr_reader :total_price, :basket, :chair_count
+attr_reader :total_price, :basket
 
   def initialize(promotional_rules)
     @promotional_rules = promotional_rules
