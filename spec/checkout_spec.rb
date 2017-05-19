@@ -28,5 +28,13 @@ describe Checkout do
       co.scan(table)
       expect(co.total).to eq 63
     end
+
+    it 'should make promotion if there are more than 2 chairs' do
+      co = Checkout.new(2)
+      chair = Item.new 001,  "chair",  9.25
+      co.scan(chair)
+      co.scan(chair)
+      expect(co.total).to eq 17
+    end
   end
 end
