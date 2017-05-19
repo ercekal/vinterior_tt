@@ -2,14 +2,15 @@ require_relative 'item'
 
 class Checkout
 
-attr_reader :items, :order, :eachtotal
+attr_reader :total, :basket
 
-  def initialize(items: Items.new)
-    @items = items
-    @eachtotal = []
+  def initialize
+    @basket = []
+    @total = 0
   end
 
-  def read_items
-    items.list_items
+  def scan(item)
+    @total += item.price
   end
+
 end
