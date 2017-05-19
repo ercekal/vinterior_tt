@@ -26,8 +26,15 @@ attr_reader :total_price, :basket, :chair_count
       if @chair_count >= 2
         @total_price = @total_price - ((9.25 - 8.50) * @chair_count)
       end
+    elsif @promotional_rules == 3
+      if @chair_count >= 2
+        @total_price = @total_price - ((9.25 - 8.50) * @chair_count)
+      end
+      if @total_price > 60
+        @total_price = @total_price * 0.9
+      end
     end
-    @total_price
+    @total_price.round(2)
   end
 
   private
